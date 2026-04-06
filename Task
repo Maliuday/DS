@@ -62,16 +62,11 @@ print(mean_squared_error(y,pred))
 print(np.mean(df_clean.iloc[:,0]))
 print(np.var(df_clean.iloc[:,0]))
 
- #17. SVM Regression
-from sklearn.svm import SVR
-model = SVR().fit(X,y)
-pred = model.predict(X)
-print(mean_absolute_error(y,pred))
-
- #19. SVM Classification
-from sklearn.svm import SVC
+ #16. KNN
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report
-model = SVC().fit(df_clean,y)
+y = (df_clean.iloc[:,0] > df_clean.iloc[:,0].mean()).astype(int)
+model = KNeighborsClassifier().fit(df_clean,y)
 pred = model.predict(df_clean)
 print(classification_report(y,pred))
 
@@ -80,28 +75,3 @@ print(classification_report(y,pred))
 from sklearn.cluster import KMeans
 k = KMeans(n_clusters=3).fit(df_clean)
 print(k.labels_)
-
-21. Logistic Regression
-from sklearn.linear_model import LogisticRegression
-model = LogisticRegression().fit(df_clean,y)
-pred = model.predict(df_clean)
-print(classification_report(y,pred))
-
-
- #22. Decision Tree
-from sklearn.tree import DecisionTreeClassifier
-model = DecisionTreeClassifier().fit(df_clean,y)
-pred = model.predict(df_clean)
-print(classification_report(y,pred))
-
- #23. Random Forest
-from sklearn.ensemble import RandomForestClassifier
-model = RandomForestClassifier().fit(df_clean,y)
-pred = model.predict(df_clean)
-print(classification_report(y,pred))
-
- #24. Neural Network
-from sklearn.neural_network import MLPClassifier
-model = MLPClassifier(max_iter=500).fit(df_clean,y)
-pred = model.predict(df_clean)
-print(classification_report(y,pred))
